@@ -32,10 +32,10 @@ if($op == 'delete'){
 }
 if ($op == 'edit') {
     $id         = $_GET['id'];
-    $sql1       = "select * from detail_lagu lagu id = '$id'";
+    $sql1       = "select * from detail_lagu where id = '$id'";
     $q1         = mysqli_query($koneksi, $sql1);
     $r1         = mysqli_fetch_array($q1);
-    $nil        = $r1['nim'];
+    $nil        = $r1['nil'];
     $nama_lagu       = $r1['nama_lagu'];
     $artis     = $r1['artis'];
     $album   = $r1['album'];
@@ -60,7 +60,7 @@ if (isset($_POST['simpan'])) { //untuk create
                 $error  = "Data gagal diupdate";
             }
         } else { //untuk insert
-            $sql1   = "insert into mahasiswa(nil,nama_lagu,artis,album) values ('$nil','$nama_lagu','$artis','$album')";
+            $sql1   = "insert into detail_lagu(nil,nama_lagu,artis,album) values ('$nil','$nama_lagu','$artis','$album')";
             $q1     = mysqli_query($koneksi, $sql1);
             if ($q1) {
                 $sukses     = "Berhasil memasukkan data baru";
@@ -155,7 +155,7 @@ if (isset($_POST['simpan'])) { //untuk create
 
         <!-- untuk mengeluarkan data -->
         <div class="card">
-            <div class="card-header text-white bg-secondary">
+            <div class="card-header text-white bg-primary">
                 Data Mahasiswa
             </div>
             <div class="card-body">
@@ -185,10 +185,10 @@ if (isset($_POST['simpan'])) { //untuk create
                         ?>
                             <tr>
                                 <th scope="row"><?php echo $urut++ ?></th>
-                                <td scope="row"><?php echo $nim ?></td>
-                                <td scope="row"><?php echo $nama ?></td>
-                                <td scope="row"><?php echo $alamat ?></td>
-                                <td scope="row"><?php echo $fakultas ?></td>
+                                <td scope="row"><?php echo $nil ?></td>
+                                <td scope="row"><?php echo $nama_lagu ?></td>
+                                <td scope="row"><?php echo $artis ?></td>
+                                <td scope="row"><?php echo $album ?></td>
                                 <td scope="row">
                                     <a href="index.php?op=edit&id=<?php echo $id ?>"><button type="button" class="btn btn-warning">Edit</button></a>
                                     <a href="index.php?op=delete&id=<?php echo $id?>" onclick="return confirm('Yakin mau hapus?')"><button type="button" class="btn btn-danger">Hapus</button></a>            
